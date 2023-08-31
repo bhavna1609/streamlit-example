@@ -1,9 +1,8 @@
 import streamlit as st
 import time
-from snowflake.snowpark.context import get_active_session
 
 
-session = get_active_session()
+
 st.set_page_config(page_title='User', page_icon=':wave:')
 # Initialize connection.
 conn = st.experimental_connection('snowpark')
