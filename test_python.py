@@ -1,7 +1,6 @@
 import streamlit as st
 import time
 
-from utils import charts, gui, processing
 
 
 
@@ -14,7 +13,7 @@ with st.sidebar:
     date_from, date_to = gui.date_selector()
 
     # Header
-gui.icon("🔹")
+
 st.title("User Adoption")
 # Initialize connection.
 conn = st.experimental_connection('snowpark')
