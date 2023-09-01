@@ -9,13 +9,13 @@ st.set_page_config(
     page_title="Monitoring Dashboard", page_icon="🔹", layout="centered"
 )
 
-    # Date selector widget
-    with st.sidebar:
-        date_from, date_to = gui.date_selector()
+# Date selector widget
+with st.sidebar:
+    date_from, date_to = gui.date_selector()
 
     # Header
-    gui.icon("🔹")
-    st.title("Compute insights")
+gui.icon("🔹")
+st.title("User Adoption")
 # Initialize connection.
 conn = st.experimental_connection('snowpark')
 #status elements
