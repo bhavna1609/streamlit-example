@@ -3,7 +3,10 @@ import time
 
 
 
-st.set_page_config(page_title='User', page_icon=':wave:')
+st.set_page_config(
+    page_title="Monitoring Dashboard - User Adoption", page_icon="🔹", layout="centered"
+)
+
 # Initialize connection.
 conn = st.experimental_connection('snowpark')
 #status elements
