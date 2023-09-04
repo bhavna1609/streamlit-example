@@ -99,6 +99,6 @@ st.sidebar.success('Welcome to Home Page :tada:')
 with st.chat_message("user"):
     st.write("Hello 👋")
 # Perform query.
-df = conn.query('SELECT  'ACTIVE USERS' AS USER_FLAG,COUNT(DISTINCT NAME) USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null and disabled ='false' ;', ttl=600)
+df = conn.query('SELECT top 10 * from SNOWFLAKE.ACCOUNT_USAGE.USERS;', ttl=600)
 st.dataframe(df)
 
