@@ -1,4 +1,5 @@
 altair
+matplotlib
 pandas
 streamlit
 snowflake-snowpark-python[pandas]
