@@ -80,7 +80,8 @@ with st.sidebar:
     date_from, date_to = date_selector()
 
     # Header
-st.title(':blue[Monitoring Dashboard] :sunglasses:')
+st.title("Welcome to the Monitoring Dashboard app!")
+#st.title(':blue[Monitoring Dashboard] :sunglasses:')
 st.text("")
 st.text("")
 st.title("User Adoption")
@@ -96,7 +97,7 @@ conn = st.experimental_connection('snowpark')
 #Code block
   #code = '''st.title('First :blue[Streamlit] web app :sunglasses:')'''
   #st.code(code, language='python')
-
+st.sidebar.info("Choose a page!")
 #with st.chat_message("user"):
     #st.write("Hello 👋")
 st.subheader('Active Users')
