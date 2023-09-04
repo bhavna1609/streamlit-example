@@ -100,6 +100,6 @@ conn = st.experimental_connection('snowpark')
 with st.chat_message("user"):
     st.write("Hello 👋")
 # Perform query.
-df = conn.query('SELECT  'ACTIVE USERS' AS USER_FLAG, NAME USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null and disabled ='false';', ttl=600)
+df = conn.query('SELECT   NAME as USERS ,EMAIL FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
 st.bar_chart(df)
 
