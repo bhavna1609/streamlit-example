@@ -97,7 +97,11 @@ conn = st.experimental_connection('snowpark')
 #Code block
   #code = '''st.title('First :blue[Streamlit] web app :sunglasses:')'''
   #st.code(code, language='python')
-st.sidebar.info("Choose a page!")
+with st.sidebar:
+    add_radio = st.radio(
+        "Choose a page",
+        ("User Adoption", "Performance monitoring")
+    )
 #with st.chat_message("user"):
     #st.write("Hello 👋")
 st.subheader('Active Users')
