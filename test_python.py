@@ -80,7 +80,9 @@ with st.sidebar:
     date_from, date_to = date_selector()
 
     # Header
-
+st.title('blue[Monitoring Dashboard] web app :sunglasses:')
+st.text("")
+st.text("")
 st.title("User Adoption")
 # Initialize connection.
 conn = st.experimental_connection('snowpark')
@@ -88,11 +90,9 @@ conn = st.experimental_connection('snowpark')
 #st.snow()
 #st.balloons()
 #Title
-st.title('First :blue[Streamlit] web app :sunglasses:')
-st.text("")
-st.text("")
 
-st.sidebar.success('Welcome to Home Page :tada:')
+
+#st.sidebar.success('Welcome to Home Page :tada:')
 #Code block
   #code = '''st.title('First :blue[Streamlit] web app :sunglasses:')'''
   #st.code(code, language='python')
@@ -100,6 +100,6 @@ st.sidebar.success('Welcome to Home Page :tada:')
 with st.chat_message("user"):
     st.write("Hello 👋")
 # Perform query.
-df = conn.query('SELECT top 10 * from SNOWFLAKE.ACCOUNT_USAGE.USERS;', ttl=600)
-st.dataframe(df)
+df = conn.query('SELECT  'ACTIVE USERS' AS USER_FLAG, NAME USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null and disabled ='false';', ttl=600)
+st.bar_chart(df)
 
