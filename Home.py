@@ -7,4 +7,4 @@ st.set_page_config(
 
 st.write("# Welcome to Monitoring Dashboard! 👋")
 
-st.sidebar.success("Select a page below.")
+st.sidebar.success("Select a page above.")
