@@ -103,5 +103,5 @@ conn = st.experimental_connection('snowpark')
     #st.write("Hello 👋")
 st.subheader('Top 10 Slow Running Queries')
 # Perform query.
-df = conn.query('select         query_text,   (execution_time / 1000) as exec_time_in_seconds from SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY where  execution_status = \'SUCCESS\' order by     execution_time desc limit     10;;', ttl=600)
+df = conn.query('select    (execution_time / 1000) as exec_time_in_seconds,query_text from SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY where  execution_status = \'SUCCESS\' order by     execution_time desc limit     10;;', ttl=600)
 st.pyplot(df.plot.barh(stacked=True).figure)
