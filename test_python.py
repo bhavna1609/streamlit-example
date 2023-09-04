@@ -97,9 +97,10 @@ conn = st.experimental_connection('snowpark')
   #code = '''st.title('First :blue[Streamlit] web app :sunglasses:')'''
   #st.code(code, language='python')
 
-with st.chat_message("user"):
-    st.write("Hello 👋")
+#with st.chat_message("user"):
+    #st.write("Hello 👋")
+st.subheader('Active Users')
 # Perform query.
-df = conn.query('SELECT   NAME as USERS ,EMAIL FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
+df = conn.query('SELECT  NAME as ACTIVE_USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
 st.bar_chart(df)
 
