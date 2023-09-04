@@ -4,4 +4,4 @@ pandas
 streamlit
 snowflake-snowpark-python[pandas]
 utils
-matplotlib
+
