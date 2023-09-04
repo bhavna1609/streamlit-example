@@ -80,7 +80,7 @@ with st.sidebar:
     date_from, date_to = date_selector()
 
     # Header
-st.title('blue[Monitoring Dashboard] web app :sunglasses:')
+st.title(':blue[Monitoring Dashboard] :sunglasses:')
 st.text("")
 st.text("")
 st.title("User Adoption")
