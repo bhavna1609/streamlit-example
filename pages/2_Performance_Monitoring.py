@@ -1,5 +1,5 @@
 import streamlit as st
-import matplotlib.pyplot
+import matplotlib
 import time
 import datetime
 
