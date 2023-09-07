@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+from snowflake.snowpark.context import get_active_session
 
 st.set_page_config(
     page_title="Hello",
