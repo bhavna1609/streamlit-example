@@ -43,13 +43,4 @@ with st.form("Budget_input_form"):
     edited = st.data_editor(df, use_container_width=True, num_rows="dynamic")
     submit_button = st.form_submit_button("Submit")
 
-if submit_button:
-    try:
-        #Note the quote_identifiers argument for case insensitivity
-        session.write_pandas(edited, "ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE", overwrite=True, quote_identifiers=False)
-        st.toast("Table updated")
-        time.sleep(5)
-    except:
-        st.warning("Error updating table")
-    #display success message for 5 seconds and update the table to reflect what is in Snowflake
-    st.experimental_rerun()
+
