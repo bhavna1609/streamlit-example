@@ -11,7 +11,7 @@ st.write("# Welcome to Monitoring Dashboard! 👋")
 
 st.sidebar.success("Select a page above.")
 
-conn = st.experimental_connection('snowpark')
+conn = st.experimental_connection('snowpark').session
 #df = conn.query('SELECT ROUND(SUM(CREDITS_USED),2) AS YTD_COMPUTE_CREDITS FROM SNOWFLAKE.ORGANIZATION_USAGE.WAREHOUSE_METERING_HISTORY;', ttl=600)
 #compute_credit = pd.to_numeric(df)
 #st.metric(label="Compute Credits", value=compute_credit)
@@ -35,12 +35,22 @@ kpi3.metric(
 )
 
 #Budget input
-session = get_active_session()
-df=conn.query('SELECT * FROM ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE;')
+#session = get_active_session()
+df=conn.table('ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE')
 
 with st.form("Budget_input_form"):
     st.caption("edit the Budget")
     edited = st.data_editor(df, use_container_width=True, num_rows="dynamic")
     submit_button = st.form_submit_button("Submit")
+if submit_button:
+    try:
+        #Note the quote_identifiers argument for case insensitivity
+        conn.write_pandas(edited, "ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE", overwrite=True, quote_identifiers=False)
+        st.toast("Table updated")
+        time.sleep(5)
+    except:
+        st.warning("Error updating table")
+    #display success message for 5 seconds and update the table to reflect what is in Snowflake
+    st.experimental_rerun()
 
 
