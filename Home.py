@@ -37,12 +37,12 @@ kpi3.metric(
 )
 conn = st.experimental_connection('snowpark')
 df = conn.query('SELECT  ACCOUNT_NAME FROM ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE ;', ttl=600)
-option = st.selectbox('Select Account_Name',df)
+option = st.selectbox('Select Account Name for which you want to input the budget',df)
 
 st.write('You selected:', option)
 
 session = st.experimental_connection('snowpark').session
-df = session.table('ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE')
+df = conn.query('SELECT * FROM ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE WHERE ACCOUNT_NAME=\'',option,\')
 
 
 st.text("")
