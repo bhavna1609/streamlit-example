@@ -39,6 +39,7 @@ kpi3.metric(
 #Budget input
 #session = get_active_session()
 df=session.table('ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE')
+print(df)
 
 with st.form("Budget_input_form"):
     st.caption("edit the Budget")
