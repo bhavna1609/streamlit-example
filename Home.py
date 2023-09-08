@@ -35,14 +35,17 @@ kpi3.metric(
     label="Warehouses",
     value="1"
 )
+conn = st.experimental_connection('snowpark')
+df = conn.query('SELECT  ACCOUNT_NAME FROM ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE ;', ttl=600)
+option = st.selectbox('Select Account_Name',df)
 
-#Budget input
-#session = get_active_session()
-#df=session.table('ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE')
-#df
+st.write('You selected:', option)
+
 session = st.experimental_connection('snowpark').session
 df = session.table('ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE')
-df
+
+
+st.text("")
 
 #st.dataframe(df)
 with st.form("data_editor_form"):
