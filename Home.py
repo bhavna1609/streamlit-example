@@ -42,6 +42,7 @@ kpi3.metric(
 #df
 session = st.experimental_connection('snowpark').session
 df = session.table('ACCOUNT_INFO_TABLE')
+df
 
 #st.dataframe(df)
 with st.form("data_editor_form"):
