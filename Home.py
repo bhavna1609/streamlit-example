@@ -51,7 +51,7 @@ st.text("")
 
 #st.dataframe(df)
 with st.form("data_editor_form"):
-    st.caption("Edit the budget for account:",option)
+    st.caption("Edit the budget for selected account")
     edited = st.data_editor(df, use_container_width=True, num_rows="dynamic")
     submit_button = st.form_submit_button("Submit")
 
