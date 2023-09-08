@@ -42,7 +42,8 @@ option = st.selectbox('Select Account Name for which you want to input the budge
 st.write('You selected:', option)
 
 session = st.experimental_connection('snowpark').session
-df = conn.query('SELECT * FROM ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE WHERE ACCOUNT_NAME=\'',option,'\'')
+df = session.table('TAGGING_SAMPLE').filter(col('ACCOUNT_Name').isin(option))
+df
 
 
 st.text("")
