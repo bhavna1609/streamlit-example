@@ -5,6 +5,7 @@ from snowflake.snowpark.context import get_active_session
 from snowflake.snowpark.functions import sum, col
 import altair as alt
 import pandas as pd
+import plotly.express as px
 
 # Set page config
 st.set_page_config(layout="wide")
@@ -122,17 +123,12 @@ df = df_login_history.groupby("FIRST_AUTHENTICATION_FACTOR").agg(
     {"USER_NAME": pd.Series.nunique})
 df
 
+fig = px.bar(
+    df,
+    x="FIRST_AUTHENTICATION_FACTOR",
+    y="USER_NAME",
+    color="FIRST_AUTHENTICATION_FACTOR",
+    text="USER_NAME",
+)
 
-with st.container():
-
-    line_chart = alt.Chart(df_users).mark_line(
-        color="lightblue",
-        line=True,
-        point=alt.OverlayMarkDef(color="red")
-    ).encode(
-        x='first_authentication_factor',
-        y='USER_NAME',
-        color='EVENT_TIMESTAMP',
-        tooltip=['EVENT_TIMESTAMP','first_authentication_factor','USER_NAME']
-    )
-    st.altair_chart(line_chart, use_container_width=True)
+st.plotly_chart(fig)
