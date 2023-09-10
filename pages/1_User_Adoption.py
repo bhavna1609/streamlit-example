@@ -112,7 +112,21 @@ conn = st.experimental_connection('snowpark')
   #st.code(code, language='python')
 #with st.chat_message("user"):
     #st.write("Hello 👋")
-st.subheader('Active Users')
+#st.subheader('Active Users')
 # Perform query.
-df = conn.query('SELECT  NAME as ACTIVE_USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
-st.bar_chart(df)
+#df = conn.query('SELECT  NAME as ACTIVE_USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
+#st.bar_chart(df)
+
+with st.container():
+
+    line_chart = alt.Chart(df_users).mark_line(
+        color="lightblue",
+        line=True,
+        point=alt.OverlayMarkDef(color="red")
+    ).encode(
+        x='first_authentication_factor',
+        y='USER_NAME',
+        color='EVENT_TIMESTAMP',
+        tooltip=['EVENT_TIMESTAMP Name','first_authentication_factor','USER_NAME']
+    )
+    st.altair_chart(line_chart, use_container_width=True)
