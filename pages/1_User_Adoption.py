@@ -125,8 +125,8 @@ df
 
 fig = px.bar(
     df,
-    x="FIRST_AUTHENTICATION_FACTOR",
-    y="USER_NAME",
+    x="USER_NAME",
+    y="FIRST_AUTHENTICATION_FACTOR",
     color="FIRST_AUTHENTICATION_FACTOR",
     text="USER_NAME",
 )
