@@ -117,7 +117,7 @@ conn = st.experimental_connection('snowpark')
 #df = conn.query('SELECT  NAME as ACTIVE_USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
 #st.bar_chart(df)
 
-df = df_login_history.groupby("first_authentication_factor").agg(
+df = df_login_history.groupby("FIRST_AUTHENTICATION_FACTOR").agg(
     {"USER_NAME": pd.Series.nunique})
 df
 
