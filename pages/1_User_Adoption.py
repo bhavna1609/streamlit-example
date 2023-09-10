@@ -12,7 +12,7 @@ st.set_page_config(layout="wide")
 session = get_active_session()
 
 # prepare dataset
-def get_data():
+def get_data(date_from):
     # Load CO2 emissions data
     snow_users = session.table("SNOWFLAKE.ACCOUNT_USAGE.USERS").filter(col('CREATED_ON') >= date_from)
     snow_login_history = session.table("SNOWFLAKE.ACCOUNT_USAGE.LOGIN_HISTORY").filter(col('EVENT_TIMESTAMP') >= date_from)
