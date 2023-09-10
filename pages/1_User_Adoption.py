@@ -127,6 +127,6 @@ with st.container():
         x='first_authentication_factor',
         y='USER_NAME',
         color='EVENT_TIMESTAMP',
-        tooltip=['EVENT_TIMESTAMP Name','first_authentication_factor','USER_NAME']
+        tooltip=['EVENT_TIMESTAMP','first_authentication_factor','USER_NAME']
     )
     st.altair_chart(line_chart, use_container_width=True)
