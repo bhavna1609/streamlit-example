@@ -1,14 +1,25 @@
 import streamlit as st
 import time
 import datetime
+from snowflake.snowpark.context import get_active_session
+from snowflake.snowpark.functions import sum, col
+import altair as alt
+
+# Set page config
+st.set_page_config(layout="wide")
+
+# Get current session
+session = get_active_session()
+
+# prepare dataset
+def get_data():
+    # Load CO2 emissions data
+    snow_users = session.table("SNOWFLAKE.ACCOUNT_USAGE.USERS").filter(col('CREATED_ON') >= date_from)
+    snow_login_history = session.table("SNOWFLAKE.ACCOUNT_USAGE.LOGIN_HISTORY").filter(col('EVENT_TIMESTAMP') >= date_from)
+    return snow_users.to_pandas(), snow_login_history.to_pandas()
 
 
-
-
-st.set_page_config(
-    page_title="Monitoring Dashboard", page_icon="🔹", layout="centered"
-)
-
+# date selector function
 def date_selector() -> tuple[datetime.date, datetime.date]:
     """Adds a date selector with a few different options."""
 
@@ -78,12 +89,14 @@ def date_selector() -> tuple[datetime.date, datetime.date]:
 # Date selector widget
 with st.sidebar:
     date_from, date_to = date_selector()
+    
+df_users, df_login_history = get_data(date_from)
 
-    # Header
-#st.title("Welcome to the Monitoring Dashboard app!")
-#st.title(':blue[Monitoring Dashboard] :sunglasses:')
-#st.text("")
-#st.text("")
+df_users
+df_login_history
+
+
+
 st.title("User Adoption")
 # Initialize connection.
 conn = st.experimental_connection('snowpark')
