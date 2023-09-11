@@ -110,7 +110,7 @@ df = conn.query('select to_number((execution_time / 1000)) as exec_time_in_secon
 df
 
 
-df=px.data.df()
+#df=px.data.tips()
 fig=px.bar(df,x='EXEC_TIME_IN_SECONDS',y='QUERY_TEXT', orientation='h')
 st.write(fig)
 
