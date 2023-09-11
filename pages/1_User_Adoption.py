@@ -123,12 +123,8 @@ df = df_login_history.groupby("FIRST_AUTHENTICATION_FACTOR").agg(
     {"USER_NAME": pd.Series.nunique})
 df
 
-fig = px.bar(
+st.bar_chart(
     df,
-    x="USER_NAME",
-    y="FIRST_AUTHENTICATION_FACTOR",
-    color="FIRST_AUTHENTICATION_FACTOR",
-    text="USER_NAME",
+    x='FIRST_AUTHENTICATION_FACTOR',
+    y='USER_NAME'
 )
-
-st.plotly_chart(fig)
