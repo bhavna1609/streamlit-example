@@ -119,7 +119,7 @@ conn = st.experimental_connection('snowpark')
 #df = conn.query('SELECT  NAME as ACTIVE_USERS FROM SNOWFLAKE.ACCOUNT_USAGE.USERS WHERE deleted_on is null ;', ttl=600)
 #st.bar_chart(df)
 
-df = df_login_history.groupby(["FIRST_AUTHENTICATION_FACTOR","EVENT_TIMESTAMP"]).agg(
+df = df_login_history.groupby(["FIRST_AUTHENTICATION_FACTOR","EVENT_TIMESTAMP"],as_index=False).agg(
     {"USER_NAME": pd.Series.nunique})
 df
 p = df.reindex(columns=['FIRST_AUTHENTICATION_FACTOR', 'EVENT_TIMESTAMP','USER_NAME'])
@@ -127,7 +127,7 @@ p
 p.columns
 
 st.bar_chart(
-    df,
+    p,
     x='FIRST_AUTHENTICATION_FACTOR',
     y='USER_NAME'
 )
