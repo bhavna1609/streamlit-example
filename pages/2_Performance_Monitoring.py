@@ -107,11 +107,11 @@ conn = st.experimental_connection('snowpark')
 st.subheader('Top 10 Slow Running Queries')
 # Perform query.
 df = conn.query('select to_number((execution_time / 1000)) as exec_time_in_seconds,query_text from SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY where  execution_status = \'SUCCESS\' order by     execution_time desc limit     10;;', ttl=600)
-df
+#df
 
 
 #df=px.data.tips()
-fig=px.bar(df,y='EXEC_TIME_IN_SECONDS', orientation='h',hovermode ='QUERY_TEXT')
+fig=px.bar(df,y='EXEC_TIME_IN_SECONDS', orientation='h')
 st.write(fig)
 
 #st.pyplot(df.plot.barh(stacked=True).figure)
