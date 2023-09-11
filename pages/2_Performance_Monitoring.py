@@ -110,17 +110,8 @@ df = conn.query('select to_number((execution_time / 1000)) as exec_time_in_secon
 df
 
 
-data = pd.melt(df.reset_index(), id_vars=["index"])
-data
-chart = (
-    alt.Chart(data)
-    .mark_bar()
-    .encode(
-        x="EXEC_TIME_IN_SECONDS",
-        y="QUERY_TEXT"
-    )
-)
-
-st.altair_chart(chart, use_container_width=True)
+df=px.df.tips()
+fig=px.bar(df,x='EXEC_TIME_IN_SECONDS',y='QUERY_TEXT', orientation='h')
+st.write(fig)
 
 #st.pyplot(df.plot.barh(stacked=True).figure)
