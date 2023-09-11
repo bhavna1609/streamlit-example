@@ -110,7 +110,7 @@ df = conn.query('select to_number((execution_time / 1000)) as exec_time_in_secon
 df
 
 st.bar_chart(df)
-data = pd.melt(chart_data.reset_index(), id_vars=["index"])
+data = pd.melt(df.reset_index(), id_vars=["index"])
 chart = (
     alt.Chart(data)
     .mark_bar()
