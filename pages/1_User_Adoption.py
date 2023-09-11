@@ -94,10 +94,6 @@ with st.sidebar:
     
 df_users, df_login_history = get_data(date_from)
 
-df_users
-df_login_history
-
-
 
 st.title("User Adoption")
 # Initialize connection.
@@ -121,10 +117,9 @@ conn = st.experimental_connection('snowpark')
 
 df = df_login_history.groupby(["FIRST_AUTHENTICATION_FACTOR","EVENT_TIMESTAMP"],as_index=False).agg(
     {"USER_NAME": pd.Series.nunique})
-df
-df.columns
 
 
+st.subheader('User Login Method')
 st.bar_chart(
     df,
     x='EVENT_TIMESTAMP',
