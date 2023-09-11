@@ -115,3 +115,8 @@ fig=px.bar(df,y='EXEC_TIME_IN_SECONDS', orientation='h')
 st.write(fig)
 
 #st.pyplot(df.plot.barh(stacked=True).figure)
+st.text("")
+st.text("")
+st.subheader('Warehouse Usage over time')
+df = conn.query('SELECT SUM(CREDITS_USED) CREDITS_USED,TO_DATE(START_TIME) START_DATE FROM  SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY GROUP BY  START_DATE;', ttl=600)
+df
