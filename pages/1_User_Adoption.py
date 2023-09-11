@@ -131,6 +131,9 @@ st.text("")
 st.text("")
 st.subheader('User Statistics')
 df_users
-df = df_users.groupby(["CREATED_ON"],as_index=False).agg(
-    {"NAME": pd.Series.nunique})
-df
+st.bar_chart(
+    df_users,
+    x='CREATED_ON',
+    y='LOGIN_NAME',
+    color='LOGIN_NAME'
+)
