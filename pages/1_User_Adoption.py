@@ -120,7 +120,7 @@ conn = st.experimental_connection('snowpark')
 #st.bar_chart(df)
 
 df = df_login_history.groupby("FIRST_AUTHENTICATION_FACTOR").agg(
-    {"USER_NAME": pd.Series.nunique})
+    {"EVENT_TIMESTAMP","USER_NAME": pd.Series.nunique})
 df
 df.columns
 
