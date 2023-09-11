@@ -109,16 +109,15 @@ st.subheader('Top 10 Slow Running Queries')
 df = conn.query('select to_number((execution_time / 1000)) as exec_time_in_seconds,query_text from SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY where  execution_status = \'SUCCESS\' order by     execution_time desc limit     10;;', ttl=600)
 df
 
-st.bar_chart(df)
+
 data = pd.melt(df.reset_index(), id_vars=["index"])
+data
 chart = (
     alt.Chart(data)
     .mark_bar()
     .encode(
-        x=alt.X("value", type="quantitative", title=""),
-        y=alt.Y("index", type="nominal", title=""),
-        color=alt.Color("variable", type="nominal", title=""),
-        order=alt.Order("variable", sort="descending"),
+        x="EXEC_TIME_IN_SECONDS",
+        y="QUERY_TEXT"
     )
 )
 
