@@ -122,7 +122,7 @@ conn = st.experimental_connection('snowpark')
 df = df_login_history.groupby(["FIRST_AUTHENTICATION_FACTOR","EVENT_TIMESTAMP"]).agg(
     {"USER_NAME": pd.Series.nunique})
 df
-p = p.reindex(columns=['FIRST_AUTHENTICATION_FACTOR', 'EVENT_TIMESTAMP','USER_NAME'])
+p = df.reindex(columns=['FIRST_AUTHENTICATION_FACTOR', 'EVENT_TIMESTAMP','USER_NAME'])
 p
 p.columns
 
