@@ -118,7 +118,8 @@ conn = st.experimental_connection('snowpark')
 df = df_login_history.groupby(["FIRST_AUTHENTICATION_FACTOR","EVENT_TIMESTAMP"],as_index=False).agg(
     {"USER_NAME": pd.Series.nunique})
 
-
+st.text("")
+st.text("")
 st.subheader('User Login Method')
 st.bar_chart(
     df,
@@ -126,3 +127,9 @@ st.bar_chart(
     y='USER_NAME',
     color='FIRST_AUTHENTICATION_FACTOR'
 )
+st.text("")
+st.text("")
+st.subheader('User Statistics')
+df = df_users.groupby(["CREATED_ON"],as_index=False).agg(
+    {"NAME": pd.Series.nunique})
+df
