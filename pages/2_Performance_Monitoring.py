@@ -122,7 +122,7 @@ df = conn.query('SELECT SUM(CREDITS_USED) CREDITS_USED,TO_DATE(START_TIME) START
 df
 
 st.line_chart(
-    chart_data,
+    df,
     x = 'START_DATE',
     y = 'CREDITS_USED'
 )
