@@ -111,7 +111,7 @@ df
 
 
 #df=px.data.tips()
-fig=px.bar(df,x='QUERY_TEXT',y='EXEC_TIME_IN_SECONDS', orientation='h')
+fig=px.bar(df,y='EXEC_TIME_IN_SECONDS', orientation='h')
 st.write(fig)
 
 #st.pyplot(df.plot.barh(stacked=True).figure)
