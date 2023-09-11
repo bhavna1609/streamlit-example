@@ -107,7 +107,7 @@ st.subheader('Top 10 Slow Running Queries')
 df = conn.query('select to_number((execution_time / 1000)) as exec_time_in_seconds,query_text from SNOWFLAKE.ACCOUNT_USAGE.QUERY_HISTORY where  execution_status = \'SUCCESS\' order by     execution_time desc limit     10;;', ttl=600)
 df
 
-fig = px.bar(df, x="query_text", y="exec_time_in_seconds",orientation='h',
-             hover_data=["query_text"])
+fig = px.bar(df, x="QUERY_TEXT", y="EXEC_TIME_IN_SECONDS",orientation='h',
+             hover_data=["QUERY_TEXT"])
 fig.show()
 st.pyplot(df.plot.barh(stacked=True).figure)
