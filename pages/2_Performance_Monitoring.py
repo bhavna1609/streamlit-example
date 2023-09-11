@@ -121,4 +121,8 @@ st.subheader('Warehouse Usage over time')
 df = conn.query('SELECT SUM(CREDITS_USED) CREDITS_USED,TO_DATE(START_TIME) START_DATE FROM  SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSE_METERING_HISTORY GROUP BY  START_DATE;', ttl=600)
 df
 
-st.line_chart(df)
+st.line_chart(
+    chart_data,
+    x = 'START_DATE',
+    y = 'CREDITS_USED'
+)
