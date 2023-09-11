@@ -123,6 +123,6 @@ df
 
 st.line_chart(
     df,
-    x = 'START_DATE',
-    y = 'CREDITS_USED'
+    x = 'CREDITS_USED',
+    y = 'START_DATE'
 )
