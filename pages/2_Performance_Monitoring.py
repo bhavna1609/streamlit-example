@@ -123,7 +123,7 @@ df
 
 st.line_chart(
     df,
-    x = 'CREDITS_USED',
-    y = 'START_DATE',
+    x = 'START_DATE',
+    y = 'CREDITS_USED',
     color = 'WAREHOUSE_NAME'
 )
