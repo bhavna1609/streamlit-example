@@ -43,11 +43,15 @@ option = st.selectbox('Select Account Name for which you want to input the budge
 #st.write('You selected:', option)
 
 session = st.experimental_connection('snowpark').session
-df = session.table('ACCOUNT_INFO_TABLE')
+df = session.table('ACCOUNT_INFO_TABLE').filter(col('ACCOUNT_Name').isin(option))
+
+
+
+st.text("")
 
 #st.dataframe(df)
 with st.form("data_editor_form"):
-    st.caption("Edit the dataframe below")
+    st.caption("Edit the budget for selected account")
     edited = st.data_editor(df, use_container_width=True, num_rows="dynamic")
     submit_button = st.form_submit_button("Submit")
 
@@ -55,11 +59,9 @@ if submit_button:
     try:
         #Note the quote_identifiers argument for case insensitivity
         session.write_pandas(edited, "ACCOUNT_INFO_TABLE", overwrite=True, quote_identifiers=False)
-        st.toast("Table updated")
+        st.toast("Budget updated successfully")
         time.sleep(5)
     except:
         st.warning("Error updating table")
     #display success message for 5 seconds and update the table to reflect what is in Snowflake
     st.experimental_rerun()
-
-
