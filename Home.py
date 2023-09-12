@@ -43,7 +43,7 @@ option = st.selectbox('Select Account Name for which you want to input the budge
 #st.write('You selected:', option)
 
 session = st.experimental_connection('snowpark').session
-df = session.table('ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE')
+df = session.table('ACCOUNT_INFO_TABLE')
 
 #st.dataframe(df)
 with st.form("data_editor_form"):
@@ -54,7 +54,7 @@ with st.form("data_editor_form"):
 if submit_button:
     try:
         #Note the quote_identifiers argument for case insensitivity
-        session.write_pandas(edited, "ST_DEMO.SCH_ST_DEMO.ACCOUNT_INFO_TABLE", overwrite=True, quote_identifiers=False)
+        session.write_pandas(edited, "ACCOUNT_INFO_TABLE", overwrite=True, quote_identifiers=False)
         st.toast("Table updated")
         time.sleep(5)
     except:
