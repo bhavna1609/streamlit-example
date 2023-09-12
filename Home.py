@@ -58,7 +58,7 @@ with st.form("data_editor_form"):
 if submit_button:
     try:
         #Note the quote_identifiers argument for case insensitivity
-        session.write_pandas(edited, "ACCOUNT_INFO_TABLE", quote_identifiers=False)
+        session.write_pandas(edited, "ACCOUNT_INFO_TABLE",overwrite=True, quote_identifiers=False)
         st.toast("Budget updated successfully")
         time.sleep(5)
     except:
