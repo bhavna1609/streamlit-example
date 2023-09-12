@@ -125,5 +125,6 @@ st.line_chart(
     df,
     x = 'START_DATE',
     y = 'CREDITS_USED',
-    color = 'WAREHOUSE_NAME'
+    color = 'WAREHOUSE_NAME',
+    use_container_width=True
 )
